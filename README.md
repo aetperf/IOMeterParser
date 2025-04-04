@@ -33,21 +33,21 @@ A Boolean flag indicating whether to exclude worker-related data from the result
 
 ### Example 1: Parse a specific CSV file
 ```powershell
-PS D:\pacollet\Client\Edilians\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Client\Edilians\Benchmark" -csvPattern "iometer_HDD_D_NTFS_Custom_OLTP.csv" -outputJsonPath "D:\pacollet\Client\Edilians\Benchmark\output_benchmark.json"
+PS D:\pacollet\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Benchmark" -csvPattern "iometer_HDD_D_NTFS_Custom_OLTP.csv" -outputJsonPath "D:\pacollet\Benchmark\output_benchmark.json"
 ```
 This will extract the data from the `iometer_HDD_D_NTFS_Custom_OLTP.csv` file and save the structured data in the `output_benchmark.json` file.
 
 
 ### Example 2: Parse all CSV files in a directory
 ```powershell
-PS D:\pacollet\Client\Edilians\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Client\Edilians\Benchmark" -csvPattern "*.csv" -outputJsonPath "D:\pacollet\Client\Edilians\Benchmark\output_benchmark.json"
+PS D:\pacollet\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Benchmark" -csvPattern "*.csv" -outputJsonPath "D:\pacolle\Benchmark\output_benchmark.json"
 ```
-This will extract data from all CSV files in the directory `D:\pacollet\Client\Edilians\Benchmark`.
+This will extract data from all CSV files in the directory `D:\pacollet\Benchmark`.
 
 ### Example 3: Exclude processors and workers data
 
 ```powershell
-PS D:\pacollet\Client\Edilians\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Client\Edilians\Benchmark" -csvPattern "iometer_HDD_D_NTFS_Custom_OLTP.csv" -outputJsonPath "D:\pacollet\Client\Edilians\Benchmark\output_benchmark.json" -notIncludeProcessors -notIncludeWorkers
+PS D:\pacollet\Benchmark> .\parserIOMeter.ps1 -csvDirectory "D:\pacollet\Benchmark" -csvPattern "iometer_HDD_D_NTFS_Custom_OLTP.csv" -outputJsonPath "D:\pacollet\Benchmark\output_benchmark.json" -notIncludeProcessors -notIncludeWorkers
 ```
 This will parse the `iometer_HDD_D_NTFS_Custom_OLTP.csv` file but exclude processor and worker data from the results.
 
