@@ -138,6 +138,7 @@ foreach ($csvFile in $csvFiles) {
 
 
             if ($inAccessSpecs -and $line -match "^(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),$") {
+                
                 $accessSpec = @{
                     'Access specification name' = $accessSpecName
                     'default assignment' = $defaultAssign
@@ -536,9 +537,21 @@ foreach ($csvFile in $csvFiles) {
         # Add the test results and access specifications to the test data
         $testData['Test Results All'] = $testResultAlls
         $testData['Test Results Managers'] = $testResultManagers
-        $testData['Test Results Processors'] = $testResultProcessors
-        $testData['Test Results Workers'] = $testResultWorkers
+        if (!$notIncludeProcessors){
+            $testData['Test Results Processors'] = $testResultProcessors
+        }
+        if (!$notIncludeWorkers){
+            $testData['Test Results Workers'] = $testResultWorkers
+        }
         $testData['Access Specifications'] = $testAccessSpecs
+
+        
+        if($csvFile.Name -like "iometer_SSD_F_NTFS_Custom_OLTP.csv"){
+            
+            $testJson = $testData | ConvertTo-Json -Depth 5
+            write-host $testJson
+        }
+
 
         # Add the data from the CSV file to the global array
         $outputJsonData += $testData
@@ -550,10 +563,10 @@ foreach ($csvFile in $csvFiles) {
 #############################################################################################
 ## OUTPUT
 #############################################################################################
-
     # Convert the global data into JSON format
     # The '-Depth 5' parameter ensures that the conversion includes nested objects up to 5 levels deep
     $globalJson = $outputJsonData | ConvertTo-Json -Depth 5
+
 
     # Save the converted JSON data to a file
     # The JSON is saved in the file specified by $outputJsonPath with UTF-8 encoding
